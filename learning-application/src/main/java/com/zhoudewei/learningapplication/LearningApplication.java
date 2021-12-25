@@ -1,4 +1,4 @@
-package com.zhoudewei.learning;
+package com.zhoudewei.learningapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
