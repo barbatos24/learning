@@ -8,6 +8,7 @@
         <module>learning-infrastructure</module>
         <module>learning-redis</module>
         <module>learning-arithmetic</module>
+        <module>learning-application</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -41,6 +42,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.zhoudewei.learningapplication.LearningApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
