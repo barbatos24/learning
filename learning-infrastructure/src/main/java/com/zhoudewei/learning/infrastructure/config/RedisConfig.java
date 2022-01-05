@@ -1,82 +1,31 @@
-/*
- * Copyright (c) 2021 ~ 2021 DeWu. All Rights Reserved.
- */
 package com.zhoudewei.learning.infrastructure.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.io.Serializable;
+
 
 /**
  * @author： zhoudewei
- * @date： 2021/12/28 10:15 上午
- * @description： Redis连接配置文件
+ * @date： 2022/1/2 1:42 下午
+ * @description： redis自动配置
  * @version： v1.0
  */
-@Component
-@ConfigurationProperties(prefix = "spring.redis")
+@Configuration
 public class RedisConfig {
 
-    private String host;
-    private int port;
-    private int timeout;//秒
-    private String password;
-    private int poolMaxTotal;
-    private int poolMaxIdle;
-    private int poolMaxWait;//秒
-
-    public String getHost() {
-        return host;
+    @Bean
+    public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory) {
+        RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        redisTemplate.setConnectionFactory(connectionFactory);
+        return redisTemplate;
     }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public int getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(int timeout) {
-        this.timeout = timeout;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getPoolMaxTotal() {
-        return poolMaxTotal;
-    }
-
-    public void setPoolMaxTotal(int poolMaxTotal) {
-        this.poolMaxTotal = poolMaxTotal;
-    }
-
-    public int getPoolMaxIdle() {
-        return poolMaxIdle;
-    }
-
-    public void setPoolMaxIdle(int poolMaxIdle) {
-        this.poolMaxIdle = poolMaxIdle;
-    }
-
-    public int getPoolMaxWait() {
-        return poolMaxWait;
-    }
-
-    public void setPoolMaxWait(int poolMaxWait) {
-        this.poolMaxWait = poolMaxWait;
-    }
 }
