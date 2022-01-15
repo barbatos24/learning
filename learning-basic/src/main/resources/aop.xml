@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+    <bean id="helloWorldImplFirst" class="com.zhoudewei.learning.basic.aop.impl.HelloWorldFirstImpl"/>
+    <bean id="timeHandle" class="com.zhoudewei.learning.basic.aop.TimeHandle"/>
+    <bean id="logHandle" class="com.zhoudewei.learning.basic.aop.LogHandle"/>
+
+    <!--前后增强-->
+    <aop:config>
+        <!--order越小距离方法越远-->
+        <aop:aspect id="time" ref="timeHandle" order="1">
+            <aop:pointcut id="addAllMethod" expression="execution(* com.zhoudewei.learning.basic.aop.impl.*.*(..))"/>
+            <aop:before method="printTime" pointcut-ref="addAllMethod"/>
+            <aop:after method="printTime" pointcut-ref="addAllMethod"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--环绕增强-->
+    <aop:config>
+        <!--order越大距离方法越近-->
+        <aop:aspect id="log" ref="logHandle" order="2">
+            <aop:pointcut id="addLog" expression="execution(* com.zhoudewei.learning.basic.aop.impl.*.*(..))"/>
+            <aop:around method="printLog" pointcut-ref="addLog"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

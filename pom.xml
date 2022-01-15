@@ -9,6 +9,7 @@
         <module>learning-redis</module>
         <module>learning-arithmetic</module>
         <module>learning-application</module>
+        <module>learning-basic</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

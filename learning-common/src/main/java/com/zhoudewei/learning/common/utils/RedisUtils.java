@@ -1,4 +1,4 @@
-package com.zhoudewei.learning.infrastructure.utils;
+package com.zhoudewei.learning.common.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;

@@ -1,6 +1,6 @@
-package com.zhoudewei.learningapplication.controller;
+package com.zhoudewei.learningapplication.controller.redis;
 
-import com.zhoudewei.learning.infrastructure.utils.RedisUtils;
+import com.zhoudewei.learning.common.utils.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
